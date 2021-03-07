@@ -4,7 +4,8 @@
 * Please feel free to use this as a template code and suggest changes if there are any bugs
 
 ## Languages
-* [Flutter](https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_1.22.0-stable.zip)
+* [Flutter](https://flutter.dev/)
+  *[version 1.22.0](https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_1.22.0-stable.zip) 
 
 ## External packages used from pub.dev
 * [google_fonts](https://pub.dev/packages/google_fonts)
