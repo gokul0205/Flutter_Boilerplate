@@ -1,4 +1,4 @@
-# theme_boilerplate_code
+# Flutter Simple Boilerplate Code
 * This is a very basic flutter boilerplate code with theme switching built in it. 
 * This code also includes router code built in it. Which is very helpful in navigating from one screen to other in a clean manner.
 * Please feel free to use this as a template code and suggest changes if there are any bugs
