@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:theme_boilerplate_code/Helper/ThemeConstants.dart';
 
 enum ThemeType { Light, Dark }
 
 class ThemeModel extends ChangeNotifier {
-  ThemeData currentTheme = darkTheme;
-  ThemeType _themeType = ThemeType.Dark;
-  String currentThemeString = "Dark";
-  getTheme()
-  {
+  ThemeData currentTheme;
+  ThemeType _themeType;
+  String currentThemeString;
+  getTheme() {
     return currentThemeString;
   }
+
   toggleTheme() {
     if (_themeType == ThemeType.Dark) {
       currentTheme = lightTheme;
@@ -26,11 +27,24 @@ class ThemeModel extends ChangeNotifier {
       return notifyListeners();
     }
   }
+  ThemeModel()
+  {
+    initTheme();
+  }
 
-  setTheme(String selectedTheme) {
+  initTheme() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    currentThemeString = (prefs.getString('theme') ?? "Light");
+    setTheme(currentThemeString);
+  }
+
+  setTheme(String selectedTheme) async {
     if (selectedTheme == null || selectedTheme == '') {
       currentTheme = lightTheme;
       _themeType = ThemeType.Light;
+      currentThemeString="Light";
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('theme', currentThemeString);
       return notifyListeners();
     } else {
       switch (selectedTheme) {
@@ -39,7 +53,6 @@ class ThemeModel extends ChangeNotifier {
             currentTheme = lightTheme;
             _themeType = ThemeType.Light;
             currentThemeString = "Light";
-            return notifyListeners();
 
           }
           break;
@@ -49,7 +62,7 @@ class ThemeModel extends ChangeNotifier {
             currentTheme = darkTheme;
             _themeType = ThemeType.Dark;
             currentThemeString = "Dark";
-            return notifyListeners();
+
           }
           break;
 
@@ -58,7 +71,7 @@ class ThemeModel extends ChangeNotifier {
             currentTheme = lightThemeOswald;
             _themeType = ThemeType.Light;
             currentThemeString = "LightOswald";
-            return notifyListeners();
+
           }
           break;
 
@@ -67,7 +80,7 @@ class ThemeModel extends ChangeNotifier {
             currentTheme = darkThemeOswald;
             _themeType = ThemeType.Dark;
             currentThemeString = "DarkOswald";
-            return notifyListeners();
+
           }
           break;
 
@@ -76,7 +89,7 @@ class ThemeModel extends ChangeNotifier {
             currentTheme = lightThemeTeko;
             _themeType = ThemeType.Light;
             currentThemeString = "LightTeko";
-            return notifyListeners();
+
           }
           break;
 
@@ -85,7 +98,7 @@ class ThemeModel extends ChangeNotifier {
             currentTheme = darkThemeTeko;
             _themeType = ThemeType.Dark;
             currentThemeString = "DarkTeko";
-            return notifyListeners();
+
           }
           break;
         default:
@@ -93,10 +106,13 @@ class ThemeModel extends ChangeNotifier {
             currentTheme = lightThemeTeko;
             _themeType = ThemeType.Light;
             currentThemeString = "LightTeko";
-            return notifyListeners();
+
           }
           break;
       }
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('theme', currentThemeString);
+      return notifyListeners();
     }
   }
 }
