@@ -6,7 +6,8 @@
 ## Languages
 * [Flutter](https://flutter.dev/)
     *[version 1.22.0](https://storage.googleapis.com/flutter_infra/releases/stable/windows/flutter_windows_1.22.0-stable.zip) 
-
+* Bullet list
+              * Nested bullet
 ## External packages used from pub.dev
 * [google_fonts](https://pub.dev/packages/google_fonts)
 * [provider](https://pub.dev/packages/provider)
